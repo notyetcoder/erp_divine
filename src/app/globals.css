@@ -22,6 +22,10 @@
   :focus-visible {
     @apply outline-2 outline-offset-2 outline-brand-600;
   }
+
+  ::selection {
+    @apply bg-brand-200 text-ink;
+  }
 }
 
 @layer components {
@@ -30,11 +34,11 @@
   }
 
   .section {
-    @apply py-20 sm:py-24;
+    @apply py-20 sm:py-28;
   }
 
   .heading {
-    @apply text-3xl font-bold tracking-tight text-ink sm:text-4xl;
+    @apply text-3xl font-semibold tracking-tight text-ink sm:text-[2.5rem] sm:leading-[1.15];
   }
 
   .lead {
@@ -42,10 +46,66 @@
   }
 
   .btn-primary {
-    @apply inline-flex items-center justify-center rounded-xl bg-brand-600 px-6 py-3.5 text-base font-semibold text-white shadow-soft transition-colors hover:bg-brand-700;
+    @apply inline-flex items-center justify-center rounded-full bg-brand-600 px-7 py-3.5 text-base font-semibold text-white shadow-soft transition duration-300 ease-out hover:bg-brand-700 hover:shadow-lift active:scale-[0.98] motion-reduce:transition-none motion-reduce:active:scale-100;
+  }
+
+  .btn-quiet {
+    @apply inline-flex items-center justify-center rounded-full border border-line bg-white px-4 py-2 text-sm font-semibold text-ink transition duration-300 ease-out hover:border-brand-300 hover:text-brand-700 active:scale-[0.98] motion-reduce:transition-none motion-reduce:active:scale-100;
+  }
+
+  /* Calm, document-like surface used for most content blocks */
+  .card {
+    @apply rounded-2xl border border-line bg-white p-6 shadow-soft transition duration-300 ease-out hover:-translate-y-0.5 hover:border-brand-200 hover:shadow-lift motion-reduce:transition-none motion-reduce:hover:translate-y-0;
+  }
+
+  /* Small status badge, like a workflow state */
+  .pill {
+    @apply inline-flex items-center gap-1.5 rounded-full bg-brand-50 px-2.5 py-1 text-xs font-medium text-brand-700 ring-1 ring-inset ring-brand-200;
   }
 
   .field {
-    @apply w-full rounded-xl border border-line bg-white px-4 py-3 text-base text-ink placeholder:text-slate-400 transition-colors focus:border-brand-500 focus:outline-none focus:ring-4 focus:ring-brand-100;
+    @apply w-full rounded-xl border border-line bg-surface px-4 py-3 text-base text-ink placeholder:text-slate-400 transition duration-200 focus:border-brand-500 focus:bg-white focus:outline-none focus:ring-4 focus:ring-brand-100;
+  }
+}
+
+/* The one orchestrated moment: the hero flow completes itself on load */
+@keyframes step-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes bar-grow {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.flow-step {
+  opacity: 0;
+  animation: step-in 0.6s ease-out forwards;
+  animation-delay: calc(var(--i) * 260ms + 250ms);
+}
+
+.flow-bar {
+  transform-origin: left;
+  animation: bar-grow 1.3s cubic-bezier(0.22, 1, 0.36, 1) 0.4s both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flow-step {
+    opacity: 1;
+    animation: none;
+  }
+  .flow-bar {
+    animation: none;
   }
 }

@@ -48,8 +48,9 @@ export default function Services() {
         <div className="max-w-2xl">
           <h2 className="heading">Where we can help</h2>
           <p className="lead mt-5">
-            Practical solutions for manufacturing and trading businesses. If your need is not listed,
-            tell us about it. We would be glad to look at it with you.
+            Practical help for manufacturing and trading businesses, built around the way you
+            already work and ready for where you are heading. If your need is not listed, tell us
+            about it. We would be glad to look at it with you.
           </p>
         </div>
 
@@ -57,12 +58,12 @@ export default function Services() {
           {services.map((service) => (
             <li
               key={service.title}
-              className="rounded-2xl border border-line bg-white p-6 shadow-soft"
+              className="card"
             >
               <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-100 text-brand-600">
                 <service.icon size={22} aria-hidden="true" />
               </span>
-              <h3 className="mt-5 text-lg font-bold text-ink">{service.title}</h3>
+              <h3 className="mt-5 text-lg font-semibold text-ink">{service.title}</h3>
               <p className="mt-2 leading-relaxed text-muted">{service.text}</p>
             </li>
           ))}

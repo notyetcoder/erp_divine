@@ -10,6 +10,10 @@ const points = [
     text: "Every business is different. We listen first and recommend later.",
   },
   {
+    title: "We build for the long term",
+    text: "Clean foundations today, so your operations stay easy to scale tomorrow.",
+  },
+  {
     title: "We prefer long-term relationships",
     text: "We would rather earn your trust over time than close a quick sale.",
   },
@@ -37,13 +41,13 @@ export default function WhyUs() {
           {points.map((point) => (
             <li
               key={point.title}
-              className="flex gap-4 rounded-2xl border border-line bg-white p-6 shadow-soft"
+              className="card flex gap-4"
             >
               <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brand-100 text-brand-600">
                 <Check size={18} aria-hidden="true" />
               </span>
               <div>
-                <h3 className="text-lg font-bold text-ink">{point.title}</h3>
+                <h3 className="text-lg font-semibold text-ink">{point.title}</h3>
                 <p className="mt-1 leading-relaxed text-muted">{point.text}</p>
               </div>
             </li>

@@ -30,6 +30,9 @@ Open http://localhost:3000
 | `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Supabase anon public key |
 | `NEXT_PUBLIC_WHATSAPP_NUMBER` | Country code + number, digits only. Example: `919876543210` |
 | `NEXT_PUBLIC_CONTACT_EMAIL` | Email address shown on the site |
+| `RESEND_API_KEY` | Key from resend.com. Turns on email alerts for new enquiries |
+| `CONTACT_NOTIFY_EMAIL` | Where enquiry alerts are delivered |
+| `CONTACT_FROM_EMAIL` | Optional. Sender address once you verify your own domain in Resend |
 
 Put them in `.env.local` for local work, and in Vercel (step 5) for production.
 
@@ -77,5 +80,7 @@ supabase/schema.sql        Table + security policy
 
 - The form includes a hidden spam-trap field and server-side validation.
 - Row Level Security means the public key can only add submissions, never read them.
-- To get an email alert for each new lead, add a Supabase Database Webhook or an
-  Edge Function on `contact_submissions`.
+- Each enquiry is saved to Supabase first, then emailed to `CONTACT_NOTIFY_EMAIL`. Replying to
+  that email goes straight to the customer. If the email step fails, the enquiry is still saved.
+- Resend's free test sender only delivers to the address you signed up with. Verify your own
+  domain in Resend for reliable delivery to any inbox.

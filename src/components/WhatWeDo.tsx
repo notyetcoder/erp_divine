@@ -13,17 +13,17 @@ export default function WhatWeDo() {
         <div className="max-w-2xl">
           <h2 className="heading">We focus on how your business actually runs</h2>
           <p className="lead mt-5">
-            Installing software is the easy part. The real improvement comes from understanding how
-            work moves through your business and making that flow simpler. We start with your
-            process, and use ERP as the tool to support it.
+            Good systems start with a good process. We take time to understand how work moves
+            through your business, make that flow simpler, and then bring in modern, flexible
+            tools that can grow with you for years to come.
           </p>
         </div>
 
         <ol className="mt-12 flex flex-col items-stretch gap-3 md:flex-row md:items-center">
           {chain.map((item, index) => (
             <li key={item.title} className="contents">
-              <div className="flex-1 rounded-2xl border border-line bg-surface p-6">
-                <h3 className="text-lg font-bold text-ink">{item.title}</h3>
+              <div className="card flex-1 bg-surface">
+                <h3 className="text-lg font-semibold text-ink">{item.title}</h3>
                 <p className="mt-2 text-muted">{item.text}</p>
               </div>
               {index < chain.length - 1 && (

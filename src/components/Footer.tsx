@@ -5,8 +5,14 @@ export default function Footer() {
     <footer className="border-t border-line bg-surface">
       <div className="container-page flex flex-col gap-8 py-12 sm:flex-row sm:items-start sm:justify-between">
         <div>
-          <p className="text-lg font-bold text-ink">{site.name}</p>
+          <p className="text-lg font-semibold text-ink">{site.name}</p>
           <p className="mt-1 text-muted">{site.tagline}</p>
+          <a
+            href={`mailto:${site.email}`}
+            className="mt-3 inline-block text-sm text-muted transition-colors hover:text-brand-600"
+          >
+            {site.email}
+          </a>
         </div>
 
         <nav aria-label="Footer">

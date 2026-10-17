@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { getSupabase } from "@/lib/supabase";
+import { sendEnquiryEmail } from "@/lib/notify";
 
 export const runtime = "nodejs";
 
@@ -51,6 +52,14 @@ export async function POST(request: Request) {
         { error: "We could not save your message. Please try again or use WhatsApp or email." },
         { status: 500 }
       );
+    }
+
+    // The enquiry is already saved. If the email fails, the visitor still sees success
+    // and the lead stays safe in Supabase.
+    try {
+      await sendEnquiryEmail({ name, email, phone, company, message });
+    } catch (mailError) {
+      console.error("Enquiry email failed:", mailError);
     }
 
     return NextResponse.json({ ok: true });

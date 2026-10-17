@@ -59,7 +59,7 @@ export default function Contact() {
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-4 rounded-2xl border border-line bg-white p-5 shadow-soft transition-colors hover:border-brand-300"
+              className="card flex items-center gap-4 p-5"
             >
               <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-100 text-brand-600">
                 <MessageCircle size={22} aria-hidden="true" />
@@ -72,7 +72,7 @@ export default function Contact() {
 
             <a
               href={`mailto:${site.email}`}
-              className="flex items-center gap-4 rounded-2xl border border-line bg-white p-5 shadow-soft transition-colors hover:border-brand-300"
+              className="card flex items-center gap-4 p-5"
             >
               <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-100 text-brand-600">
                 <Mail size={22} aria-hidden="true" />
@@ -89,9 +89,9 @@ export default function Contact() {
           {status === "success" ? (
             <div role="status" className="py-8 text-center">
               <CheckCircle2 className="mx-auto text-brand-600" size={48} aria-hidden="true" />
-              <h3 className="mt-5 text-2xl font-bold text-ink">Thank you for reaching out</h3>
+              <h3 className="mt-5 text-2xl font-semibold text-ink">Thank you for reaching out</h3>
               <p className="mx-auto mt-3 max-w-sm text-muted">
-                We have received your message and will get back to you soon.
+                We have received your message and will reply personally, usually within a working day.
               </p>
               <button
                 type="button"

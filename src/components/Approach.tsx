@@ -9,7 +9,7 @@ const steps = [
   },
   {
     title: "Design a practical solution",
-    text: "We shape a simple setup that fits your business, not the other way round.",
+    text: "We shape a simple, flexible setup that fits your business and can grow with it.",
   },
   {
     title: "Implement and support",
@@ -31,11 +31,11 @@ export default function Approach() {
 
         <ol className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {steps.map((step, index) => (
-            <li key={step.title} className="rounded-2xl border border-line bg-white p-6 shadow-soft">
-              <span className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-600 text-base font-bold text-white">
+            <li key={step.title} className="card">
+              <span className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-600 text-base font-semibold text-white">
                 {index + 1}
               </span>
-              <h3 className="mt-5 text-lg font-bold text-ink">{step.title}</h3>
+              <h3 className="mt-5 text-lg font-semibold text-ink">{step.title}</h3>
               <p className="mt-2 leading-relaxed text-muted">{step.text}</p>
             </li>
           ))}
