@@ -1,0 +1,175 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Colour tokens. Light by default, dark follows the visitor's system setting. */
+:root {
+  --page: 255 255 255;
+  --card: 255 255 255;
+  --surface: 246 248 251;
+  --line: 228 233 240;
+  --ink: 34 48 74;
+  --muted: 95 110 131;
+  --link: 34 98 171;
+  --b50: 243 248 254;
+  --b100: 227 238 251;
+  --b200: 200 221 246;
+  --b300: 157 195 238;
+  --b500: 74 144 223;
+  --b700: 34 98 171;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --page: 15 23 36;
+    --card: 24 35 58;
+    --surface: 19 29 47;
+    --line: 38 50 72;
+    --ink: 232 238 247;
+    --muted: 154 168 189;
+    --link: 125 180 240;
+    --b50: 22 37 63;
+    --b100: 29 49 80;
+    --b200: 42 70 112;
+    --b300: 61 101 152;
+    --b500: 90 159 234;
+    --b700: 141 187 242;
+    color-scheme: dark;
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
+
+  body {
+    @apply bg-page font-sans text-ink antialiased;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-brand-600;
+  }
+
+  ::selection {
+    @apply bg-brand-200 text-ink;
+  }
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-6xl px-5 sm:px-8;
+  }
+
+  .section {
+    @apply py-20 sm:py-28;
+  }
+
+  .heading {
+    @apply font-display text-3xl font-semibold tracking-tight text-ink sm:text-[2.5rem] sm:leading-[1.15];
+  }
+
+  .lead {
+    @apply text-base leading-relaxed text-muted sm:text-lg;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-full bg-brand-600 px-7 py-3.5 text-base font-semibold text-white shadow-soft transition duration-300 ease-out hover:bg-deep hover:shadow-lift active:scale-[0.98] motion-reduce:transition-none motion-reduce:active:scale-100;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center rounded-full border border-line bg-card px-7 py-3.5 text-base font-semibold text-ink transition duration-300 ease-out hover:border-brand-300 hover:text-link active:scale-[0.98] motion-reduce:transition-none motion-reduce:active:scale-100;
+  }
+
+  .btn-quiet {
+    @apply inline-flex items-center justify-center rounded-full border border-line bg-card px-4 py-2 text-sm font-semibold text-ink transition duration-300 ease-out hover:border-brand-300 hover:text-link active:scale-[0.98] motion-reduce:transition-none motion-reduce:active:scale-100;
+  }
+
+  .card {
+    @apply rounded-2xl border border-line bg-card p-6 shadow-soft;
+  }
+
+  .card-link {
+    @apply transition duration-300 ease-out hover:-translate-y-0.5 hover:border-brand-200 hover:shadow-lift motion-reduce:transition-none motion-reduce:hover:translate-y-0;
+  }
+
+  .pill {
+    @apply inline-flex items-center gap-1.5 rounded-full bg-brand-50 px-2.5 py-1 text-xs font-medium text-brand-700 ring-1 ring-inset ring-brand-200;
+  }
+
+  .field {
+    @apply w-full rounded-xl border border-line bg-surface px-4 py-3 text-base text-ink placeholder:text-muted/70 transition duration-200 focus:border-brand-500 focus:bg-card focus:outline-none focus:ring-4 focus:ring-brand-100;
+  }
+}
+
+/* The one orchestrated moment: the hero workflow completes itself on load */
+@keyframes step-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes bar-grow {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.flow-step {
+  opacity: 0;
+  animation: step-in 0.6s ease-out forwards;
+  animation-delay: calc(var(--i) * 260ms + 250ms);
+}
+
+.flow-bar {
+  transform-origin: left;
+  animation: bar-grow 1.3s cubic-bezier(0.22, 1, 0.36, 1) 0.4s both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flow-step {
+    opacity: 1;
+    animation: none;
+  }
+  .flow-bar {
+    animation: none;
+  }
+}
+
+/* A soft fade when moving between pages */
+@keyframes page-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.page-enter {
+  animation: page-in 0.35s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-enter {
+    animation: none;
+  }
+}
